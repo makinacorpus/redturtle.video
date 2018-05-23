@@ -54,6 +54,22 @@
                 </tal:novideo>
             </a>
         </div>
+        
+
+		<div id="video_download"
+		     tal:define="urlvideo view/href">
+		    <a href="" tal:condition="python:(context.portal_membership.getAuthenticatedMember().has_role('Downloader')== 1) or (context.portal_membership.getAuthenticatedMember().has_role('Manager')== 1)"
+					   tal:attributes="href string:$urlvideo" title="Download file">
+			<img src="download_video.gif" />
+			</a>
+			<span id="video_download_title">
+		        <metal:field use-macro="python:here.widget('title', mode='view')">
+		        Title
+		        </metal:field>
+		    </span>
+		</div>
+
+
 
         <metal:video_details use-macro="context/@@redturtlevideo_macros/video_details" />
 
